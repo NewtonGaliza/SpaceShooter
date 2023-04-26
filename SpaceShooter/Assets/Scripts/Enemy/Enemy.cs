@@ -20,5 +20,11 @@ public class Enemy : MonoBehaviour
         this.rigidbody.velocity = new Vector2(-speedX, 0);
     }
 
+    public void EnemyDestroy()
+    {
+        ScoreController.Score++;
+        Destroy(this.gameObject);
+    }
+
 
 }

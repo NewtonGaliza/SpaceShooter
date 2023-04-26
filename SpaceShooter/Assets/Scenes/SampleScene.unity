@@ -369,6 +369,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6.5
   gameInput: {fileID: 2112687032}
+  laserPrefab: {fileID: 6841539483584549017, guid: 5b90050629bb51643ac400e6c5caf711, type: 3}
+  waitingShoot: 0.25
 --- !u!1 &2112687031
 GameObject:
   m_ObjectHideFlags: 0
