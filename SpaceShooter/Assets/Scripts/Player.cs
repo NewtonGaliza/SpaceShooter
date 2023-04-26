@@ -1,25 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private Vector2 movement;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private GameInput gameInput;
 
-    private void Awake() 
+    private void Update()
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
+        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
 
-    public void SetMovement(InputAction.CallbackContext value)
-    {
-        movement =  value.ReadValue<Vector2>();
-    }
-
-    private void FixedUpdate()
-    {
-        rb.AddForce(new Vector3(movement.x, 0, movement.y) * Time.fixedDeltaTime);
+        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+        //transform.position += moveDir * moveSpeed *Time.deltaTime; 
+        transform.position += (Vector3)inputVector * moveSpeed * Time.deltaTime;
     }
 }
