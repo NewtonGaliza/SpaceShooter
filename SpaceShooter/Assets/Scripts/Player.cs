@@ -11,8 +11,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float waitingShoot;
     private float shootInterval;
 
+    private int lifes;
+
     private void Start()
     {
+        this.lifes = 5;
         this.shootInterval = 0;  
         ScoreController.Score = 0;      
     }
@@ -37,5 +40,32 @@ public class Player : MonoBehaviour
     {
         // quaternion.euler 0,0,-90 to rotate the laser
         Instantiate(this.laserPrefab, this.transform.position, Quaternion.Euler(0,0,-90));
+    }
+
+    public int Life
+    {
+        get { return this.lifes; }
+
+        set { 
+
+            this.lifes = value; 
+            
+            if(this.lifes < 0)
+            {
+               this.lifes = 0;
+            }
+            
+            }      
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.CompareTag("Enemy"))
+        {
+            Life--;
+            Enemy enemy =collider.GetComponent<Enemy>();
+            enemy.EnemyDestroy(false);
+        }
+        
     }
 }

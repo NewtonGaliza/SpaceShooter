@@ -16,9 +16,6 @@ public static class ScoreController
                 {
                     score = 0;
                 }
-
-                Debug.Log("Score:"+score);
             }
-            
     }
 }
