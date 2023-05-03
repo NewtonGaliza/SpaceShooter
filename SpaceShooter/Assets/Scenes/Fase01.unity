@@ -1185,7 +1185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6798ee294e36944393f7e42cf3ee910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalEnemy: {fileID: 2400603354849759431, guid: ccd4f3af8270deb40b80a04e8422126c, type: 3}
+  greenEnemtPrefab: {fileID: 2400603354849759431, guid: ccd4f3af8270deb40b80a04e8422126c, type: 3}
+  blueEnemyPrefab: {fileID: 2400603354849759431, guid: a1e53cd033d7c0f418bc410ff0927a3f, type: 3}
 --- !u!4 &1779514126
 Transform:
   m_ObjectHideFlags: 0
@@ -1880,6 +1881,7 @@ MonoBehaviour:
   gameInput: {fileID: 2112687032}
   laserPrefab: {fileID: 6841539483584549017, guid: 5b90050629bb51643ac400e6c5caf711, type: 3}
   waitingShoot: 0.25
+  spriteRenderer: {fileID: 1987321074}
 --- !u!61 &1987321078
 BoxCollider2D:
   m_ObjectHideFlags: 0

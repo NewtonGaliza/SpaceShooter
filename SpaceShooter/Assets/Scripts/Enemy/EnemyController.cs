@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private float passTime;
-    [SerializeField] private Enemy originalEnemy;
+    [SerializeField] private Enemy greenEnemtPrefab;
+    [SerializeField] private Enemy blueEnemyPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,20 @@ public class EnemyController : MonoBehaviour
 
             Vector2 enemyPosition = new Vector2(maxPosition.x, positionY);
 
-            Instantiate(this.originalEnemy, enemyPosition, Quaternion.identity);
+            Enemy prefabEnemy;
+            
+            float chance = Random.Range(0, 100);
+            if(chance <= 25) // 25% chance of create a blue enemy
+            {
+                prefabEnemy = this.blueEnemyPrefab;
+            }
+            else
+            {
+                prefabEnemy = this.greenEnemtPrefab;
+            }
+
+
+            Instantiate(prefabEnemy, enemyPosition, Quaternion.identity);
         }
     }
 }

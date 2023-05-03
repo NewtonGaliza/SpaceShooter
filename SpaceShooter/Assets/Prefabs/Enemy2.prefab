@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2400603354849759431}
   - component: {fileID: 6996449880545566343}
   m_Layer: 0
-  m_Name: Enemy1
+  m_Name: Enemy2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 71cc41cbacd70bb418f33de28c658556, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb21a4d6239870e40b65a872bf96a42d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -119,10 +119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 2400603354849759430}
-  maxSpeed: 3
-  minSpeed: 2
+  maxSpeed: 1.5
+  minSpeed: 1
   explosionParticlePrefab: {fileID: 1627530023765475047, guid: 201264548f05cf244b93ca0a759ef5d9, type: 3}
-  enemyLife: 1
+  enemyLife: 5
 --- !u!61 &6996449880545566343
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.385, y: 0.715}
+    oldSize: {x: 4.89, y: 2.12}
     newSize: {x: 2.385, y: 0.715}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

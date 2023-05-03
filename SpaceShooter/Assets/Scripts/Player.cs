@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Laser laserPrefab;
     [SerializeField] private float waitingShoot;
     private float shootInterval;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private int lifes;
 
@@ -42,6 +43,8 @@ public class Player : MonoBehaviour
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
         //transform.position += moveDir * moveSpeed *Time.deltaTime; 
         transform.position += (Vector3)inputVector * moveSpeed * Time.deltaTime;
+
+        CheckScreenLimit();
     }
 
     private void Shoot()
@@ -76,8 +79,65 @@ public class Player : MonoBehaviour
         {
             Life--;
             Enemy enemy =collider.GetComponent<Enemy>();
-            enemy.EnemyDestroy(false);
+            enemy.TakeDamage();
         }
-        
+    }
+
+    private void CheckScreenLimit()
+    {
+        Vector2 currentPosition = this.transform.position;
+
+        float halfWidth = Width / 2f;
+        float halfHeight = Height / 2f;
+
+        Camera camera = Camera.main;
+        Vector2 leftDownLimit = camera.ViewportToWorldPoint(Vector2.zero);
+        Vector2 rightUpLimit = camera.ViewportToWorldPoint(Vector2.one);
+
+        float letfReferencePoint = currentPosition.x - halfWidth;
+        float rightReferencePoint = currentPosition.x + halfWidth;        
+
+        if(letfReferencePoint < leftDownLimit.x)
+        {
+            this.transform.position = new Vector2(leftDownLimit.x + halfWidth, currentPosition.y);     
+        } 
+        else if(rightReferencePoint > rightUpLimit.x)
+        {
+            this.transform.position = new Vector2(rightUpLimit.x - halfWidth, currentPosition.y);
+        }
+
+        currentPosition = this.transform.position;
+
+        float upReferencePoint = currentPosition.y + halfHeight;
+        float downReferencePoint = currentPosition.y - halfHeight;
+
+        if(upReferencePoint > rightUpLimit.y)
+        {
+            this.transform.position = new Vector2(currentPosition.x, rightUpLimit.y - halfHeight);
+        }
+        else if(downReferencePoint < leftDownLimit.y)
+        {
+            this.transform.position = new Vector2(currentPosition.x, leftDownLimit.y + halfHeight);
+        }
+
+
+    }
+
+    private float Width //largura
+    {
+        get {  
+                Bounds bounds = this.spriteRenderer.bounds; 
+                Vector3 size = bounds.size;
+                return size.x;
+            }
+    }
+
+    private float Height //altura
+    {
+        get {
+                Bounds bounds = this.spriteRenderer.bounds;
+                Vector3 size = bounds.size;
+                return size.y;
+            }
     }
 }
