@@ -13,11 +13,19 @@ public class Player : MonoBehaviour
 
     private int lifes;
 
+    private EndGame endGameScreen;
+
+
     private void Start()
     {
         this.lifes = 5;
         this.shootInterval = 0;  
         ScoreController.Score = 0;      
+
+        
+        GameObject endGamegameObject = GameObject.FindGameObjectWithTag("EndGameScreen");
+        this.endGameScreen = endGamegameObject.GetComponent<EndGame>();
+        this.endGameScreen.Hide();
     }
 
     private void Update()
@@ -50,11 +58,15 @@ public class Player : MonoBehaviour
 
             this.lifes = value; 
             
-            if(this.lifes < 0)
+            if(this.lifes <= 0)
             {
                this.lifes = 0;
+
+               this.gameObject.SetActive(false);
+
+               endGameScreen.Show();
             }
-            
+
             }      
     }
 
