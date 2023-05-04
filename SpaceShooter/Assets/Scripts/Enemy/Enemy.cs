@@ -9,10 +9,35 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float minSpeed;
     [SerializeField] private ParticleSystem explosionParticlePrefab;
     [SerializeField] private int enemyLife;
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     private float speedX;
 
     private void Start()
     {
+        Vector2 currentPosition = this.transform.position;
+        float halfHeight = Height / 2f;
+
+        float upReferencePoint = currentPosition.y - halfHeight;
+        float downReferencePoint = currentPosition.y + halfHeight;
+
+        Camera camera = Camera.main;
+        Vector2 upLimit = camera.ViewportToWorldPoint(Vector2.zero);
+        Vector2 downLimit = camera.ViewportToWorldPoint(Vector2.one);
+
+        if(upReferencePoint < upLimit.x)
+        {
+            float positionX = upLimit.x - halfHeight;
+            this.transform.position = new Vector2(positionX, currentPosition.y);
+        }
+        else if(downReferencePoint > downLimit.x)
+        {
+            float positionX = downLimit.x + halfHeight;
+            this.transform.position = new Vector2(positionX, currentPosition.y);
+        }
+
+
         this.speedX = Random.Range(minSpeed, maxSpeed);
     }
 
@@ -54,6 +79,15 @@ public class Enemy : MonoBehaviour
         {
             EnemyDestroy(true);
         }
+    }
+
+    private float Height //altura
+    {
+        get {
+                Bounds bounds = this.spriteRenderer.bounds;
+                Vector3 size = bounds.size;
+                return size.x;
+            }
     }
 
 }
