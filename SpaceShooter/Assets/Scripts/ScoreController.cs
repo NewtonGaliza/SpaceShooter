@@ -16,6 +16,26 @@ public static class ScoreController
                 {
                     score = 0;
                 }
+
+                if(score > BestScore)
+                {
+                    BestScore = score;
+                }
+            }
+    }
+
+    public static int BestScore
+    {
+        get {
+                int bestScore = PlayerPrefs.GetInt("bestScore", 0);
+                return bestScore;
+            }
+        
+        set {
+                if(value > BestScore)
+                {
+                    PlayerPrefs.SetInt("bestScore", value);
+                }
             }
     }
 }

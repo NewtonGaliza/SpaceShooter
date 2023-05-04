@@ -7,12 +7,15 @@ using UnityEngine.SceneManagement;
 public class EndGame : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text txtBestScore;
 
     public void Show()
     {
         this.gameObject.SetActive(true);
 
         this.scoreText.text = (ScoreController.Score + " X");
+
+        this.txtBestScore.text = ScoreController.BestScore.ToString();
 
         Time.timeScale = 0;
     }
