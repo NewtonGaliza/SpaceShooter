@@ -1946,7 +1946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 547312430}
-  txtBestScore: {fileID: 1197643600}
+  txtBestScore: {fileID: 2074118286}
 --- !u!1 &1921182595
 GameObject:
   m_ObjectHideFlags: 0

@@ -124,6 +124,8 @@ MonoBehaviour:
   explosionParticlePrefab: {fileID: 1627530023765475047, guid: 201264548f05cf244b93ca0a759ef5d9, type: 3}
   enemyLife: 1
   spriteRenderer: {fileID: 2400603354849759424}
+  dropItemChance: 50
+  lifeItem: {fileID: 3183683927595137611, guid: 83d93f5e753091142bb962bc3ff420aa, type: 3}
 --- !u!61 &6996449880545566343
 BoxCollider2D:
   m_ObjectHideFlags: 0

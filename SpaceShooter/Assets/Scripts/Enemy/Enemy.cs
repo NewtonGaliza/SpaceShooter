@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int enemyLife;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
+    
+    [SerializeField] [Range(0, 100)] private float dropItemChance;
+    [SerializeField] private LifeItem lifeItem;
 
     private float speedX;
 
@@ -63,12 +66,22 @@ public class Enemy : MonoBehaviour
         if(deafated)
         {
             ScoreController.Score++;
+            DropLifeItem();
         }
 
         ParticleSystem explosionParticle = Instantiate(this.explosionParticlePrefab, this.transform.position, Quaternion.identity);
 
         Destroy(explosionParticle, 1f); // destroy particle after 1 second
         Destroy(this.gameObject);
+    }
+
+    private void DropLifeItem()
+    {
+        float randomChance = Random.Range(0f, 100f);
+        if(randomChance <= this.dropItemChance)
+        {
+            Instantiate(lifeItem, this.transform.position, Quaternion.identity);
+        }
     }
 
     public void TakeDamage()

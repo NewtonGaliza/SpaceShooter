@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private const int MaxLifeCont = 5;
     [SerializeField] private float moveSpeed;
     [SerializeField] private GameInput gameInput;
 
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        this.lifes = 5;
+        this.lifes = MaxLifeCont;
         this.shootInterval = 0;  
         ScoreController.Score = 0;      
 
@@ -60,8 +61,12 @@ public class Player : MonoBehaviour
         set { 
 
             this.lifes = value; 
-            
-            if(this.lifes <= 0)
+
+            if(this.lifes > MaxLifeCont)
+            {
+                this.lifes = MaxLifeCont;
+            }
+            else if(this.lifes <= 0)
             {
                this.lifes = 0;
 
@@ -80,6 +85,12 @@ public class Player : MonoBehaviour
             Life--;
             Enemy enemy =collider.GetComponent<Enemy>();
             enemy.TakeDamage();
+        }
+        else if(collider.CompareTag("LifeItem"))
+        {
+            LifeItem lifeItem = collider.GetComponent<LifeItem>();
+            Life += lifeItem.LifeAmount;
+            lifeItem.Collect();
         }
     }
 
