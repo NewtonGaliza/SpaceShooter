@@ -35,5 +35,15 @@ public abstract class BasicWeapon : MonoBehaviour
     }
 
     protected abstract void Shoot();
+
+    public void Activate()
+    {
+        this.gameObject.SetActive(true);
+    }
+
+    public void Deactivate()
+    {
+        this.gameObject.SetActive(false);
+    }
    
 }

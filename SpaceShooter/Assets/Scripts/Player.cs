@@ -10,9 +10,12 @@ public class Player : MonoBehaviour
 
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private WeaponController weaponController;
+
     private int lifes;
 
     private EndGame endGameScreen;
+
 
 
     private void Start()
@@ -23,6 +26,8 @@ public class Player : MonoBehaviour
         GameObject endGamegameObject = GameObject.FindGameObjectWithTag("EndGameScreen");
         this.endGameScreen = endGamegameObject.GetComponent<EndGame>();
         this.endGameScreen.Hide();
+
+        EquipSingleShot();
     }
 
     private void Update()
@@ -64,16 +69,38 @@ public class Player : MonoBehaviour
     {
         if(collider.CompareTag("Enemy"))
         {
-            Life--;
             Enemy enemy =collider.GetComponent<Enemy>();
-            enemy.TakeDamage();
+            EnemyCollide(enemy);
         }
         else if(collider.CompareTag("LifeItem"))
         {
             LifeItem lifeItem = collider.GetComponent<LifeItem>();
-            Life += lifeItem.LifeAmount;
-            lifeItem.Collect();
+            CollectLifeItem(lifeItem);
         }
+        else if(collider.CompareTag("PowerUp"))
+        {
+            CollectablePowerUp powerUp = collider.GetComponent<CollectablePowerUp>();
+            CollectPowerUp(powerUp);
+        }
+    }
+
+    public void EnemyCollide(Enemy enemy)
+    {
+        Life--;
+        enemy.TakeDamage();
+    }
+
+    private void CollectLifeItem(LifeItem lifeItem)
+    {
+        Life += lifeItem.LifeAmount;
+        lifeItem.Collect();
+    }
+
+    public void CollectPowerUp(CollectablePowerUp powerUp)
+    {
+        PowerUpEffect powerUpEffect = powerUp.PowerUpEffect;
+        powerUpEffect.Apply(this);
+        powerUp.Collect();
     }
 
     private void CheckScreenLimit()
@@ -132,5 +159,20 @@ public class Player : MonoBehaviour
                 Vector3 size = bounds.size;
                 return size.y;
             }
+    }
+
+    public void EquipSingleShot()
+    {
+        this.weaponController.EquipSingleShot();
+    }
+
+    public void EquipAlternateShot()
+    {
+        this.weaponController.EquipAlternateShot();
+    }
+
+    public void EquipDoubleShot()
+    {
+        this.weaponController.EquipDoubleShot();
     }
 }
