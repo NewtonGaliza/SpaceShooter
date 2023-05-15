@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private WeaponController weaponController;
 
+    [SerializeField] private Shield shield;
+
     private int lifes;
 
     private EndGame endGameScreen;
@@ -28,6 +30,8 @@ public class Player : MonoBehaviour
         this.endGameScreen.Hide();
 
         EquipSingleShot();
+
+        this.shield.Deactivate();
     }
 
     private void Update()
@@ -86,7 +90,14 @@ public class Player : MonoBehaviour
 
     public void EnemyCollide(Enemy enemy)
     {
-        Life--;
+        if(this.shield.ShieldActivated)
+        {
+            this.shield.TakeDamage();
+        }
+        else
+        {
+            Life--;
+        }
         enemy.TakeDamage();
     }
 
@@ -174,5 +185,10 @@ public class Player : MonoBehaviour
     public void EquipDoubleShot()
     {
         this.weaponController.EquipDoubleShot();
+    }
+
+    public void EquipShield()
+    {
+        this.shield.Activate();
     }
 }

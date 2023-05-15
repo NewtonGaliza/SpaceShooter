@@ -129,6 +129,7 @@ MonoBehaviour:
   dropPowerUpChance: 100
   powerUpPrefabs:
   - {fileID: 2308658996022804696, guid: 619b1e9119cccaf438782a0b7d32b202, type: 3}
+  - {fileID: 2752484769887407913, guid: 332bfde7c525ff04eb19cca72d10298a, type: 3}
 --- !u!61 &6996449880545566343
 BoxCollider2D:
   m_ObjectHideFlags: 0
