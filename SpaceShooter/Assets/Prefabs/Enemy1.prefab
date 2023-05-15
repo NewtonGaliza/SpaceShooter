@@ -126,6 +126,10 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2400603354849759424}
   dropItemChance: 50
   lifeItem: {fileID: 3183683927595137611, guid: 83d93f5e753091142bb962bc3ff420aa, type: 3}
+  dropPowerUpChance: 50
+  powerUpPrefabs:
+  - {fileID: 8773615059571480872, guid: 1ff9741cec84bbf4e8c8b85c71252676, type: 3}
+  - {fileID: 2308658996022804696, guid: 619b1e9119cccaf438782a0b7d32b202, type: 3}
 --- !u!61 &6996449880545566343
 BoxCollider2D:
   m_ObjectHideFlags: 0

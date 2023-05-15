@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] [Range(0, 100)] private float dropItemChance;
     [SerializeField] private LifeItem lifeItem;
 
+    [SerializeField] [Range(0, 100)] private float dropPowerUpChance;
+    [SerializeField] private CollectablePowerUp[] powerUpPrefabs;
+
+
     private float speedX;
 
     private void Start()
@@ -67,6 +71,7 @@ public class Enemy : MonoBehaviour
         {
             ScoreController.Score++;
             DropLifeItem();
+            DropPowerUp();
         }
 
         ParticleSystem explosionParticle = Instantiate(this.explosionParticlePrefab, this.transform.position, Quaternion.identity);
@@ -81,6 +86,17 @@ public class Enemy : MonoBehaviour
         if(randomChance <= this.dropItemChance)
         {
             Instantiate(lifeItem, this.transform.position, Quaternion.identity);
+        }
+    }
+
+    private void DropPowerUp()
+    {
+        float randomChance = Random.Range(0f, 100f);
+        if(randomChance <= this.dropPowerUpChance)
+        {
+            int randomPowerUpIndex = Random.Range(0, this.powerUpPrefabs.Length);
+            CollectablePowerUp powerUpPrefab = this.powerUpPrefabs[randomPowerUpIndex];
+           Instantiate(powerUpPrefab, this.transform.position, Quaternion.identity);
         }
     }
 
