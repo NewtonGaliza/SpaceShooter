@@ -6,6 +6,6 @@ public class SingleShotPowerUp : CollectablePowerUp
 {
     public override PowerUpEffect PowerUpEffect
     {
-        get { return new SingleShotEffect(); }
+        get { return new SingleShotEffect(DurationInSeconds); }
     }
 }

@@ -116,4 +116,5 @@ MonoBehaviour:
   intervalBetweenBlinks: 0.4
   maxBlinks: 15
   timeReduceBetweenBlinks: 0.005
+  effectDuration: 0
   intervalTimeBeforeSelfDestruct: 1

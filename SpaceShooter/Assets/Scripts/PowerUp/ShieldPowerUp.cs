@@ -6,6 +6,6 @@ public class ShieldPowerUp : CollectablePowerUp
 {
     public override PowerUpEffect PowerUpEffect
     {
-        get { return new ShieldEffect(); }
+        get { return new ShieldEffect(DurationInSeconds); }
     }
 }

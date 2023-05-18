@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 
     private EndGame endGameScreen;
 
+    private PowerUpEffect currentPowerUp;
+
 
 
     private void Start()
@@ -43,6 +45,16 @@ public class Player : MonoBehaviour
         transform.position += (Vector3)inputVector * moveSpeed * Time.deltaTime;
 
         CheckScreenLimit();
+
+        if(this.currentPowerUp != null)
+        {
+            this.currentPowerUp.Refresh();
+            if(!this.currentPowerUp.Active)
+            {
+                this.currentPowerUp.Remove(this);
+                this.currentPowerUp = null;
+            }
+        }
     }
 
     public int Life
@@ -109,8 +121,15 @@ public class Player : MonoBehaviour
 
     public void CollectPowerUp(CollectablePowerUp powerUp)
     {
+        if(this.currentPowerUp != null)
+        {
+            this.currentPowerUp.Remove(this);
+        }
+
         PowerUpEffect powerUpEffect = powerUp.PowerUpEffect;
         powerUpEffect.Apply(this);
+        this.currentPowerUp = powerUpEffect;
+
         powerUp.Collect();
     }
 
@@ -190,5 +209,10 @@ public class Player : MonoBehaviour
     public void EquipShield()
     {
         this.shield.Activate();
+    }
+
+    public void DeactivateShield()
+    {
+        this.shield.Deactivate();
     }
 }

@@ -6,6 +6,6 @@ public class DoubleShotPowerUp : CollectablePowerUp
 {
     public override PowerUpEffect PowerUpEffect
     {
-        get { return new DoubleShotEffect(); }
+        get { return new DoubleShotEffect(DurationInSeconds); }
     }
 }

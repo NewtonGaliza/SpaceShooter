@@ -9,6 +9,8 @@ public abstract class CollectablePowerUp : MonoBehaviour
     [SerializeField] private float maxBlinks;
     [SerializeField] private float timeReduceBetweenBlinks;
 
+    [SerializeField] private float effectDuration;
+
     [SerializeField] private float intervalTimeBeforeSelfDestruct;
     private float timeCountBeforeSelfDestruct;
     private bool selfDestructed;
@@ -31,6 +33,11 @@ public abstract class CollectablePowerUp : MonoBehaviour
                 InitiateSeflDestruct();
             }
         }
+    }
+
+    public float DurationInSeconds
+    {
+        get { return this.effectDuration; }
     }
 
     public void Collect()
