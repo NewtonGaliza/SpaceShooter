@@ -28,10 +28,10 @@ public abstract class BasicWeapon : MonoBehaviour
         }
     }
 
-    protected void CreateLaser(Vector2 position)
+    protected Laser CreateLaser(Vector2 position)
     {
         // quaternion.euler 0,0,-90 to rotate the laser
-        Instantiate(this.laserPrefab, position, Quaternion.Euler(0,0,-90));
+        return Instantiate(this.laserPrefab, position, Quaternion.Euler(0,0,-90));
     }
 
     protected abstract void Shoot();

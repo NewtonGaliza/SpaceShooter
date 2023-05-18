@@ -7,6 +7,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private SingleShot singleShot;
     [SerializeField] private AlternateShot alternateShot;
     [SerializeField] private DoubleShot doubleShot;
+    [SerializeField] private SpreadShot spreadShot;
 
     private BasicWeapon currentWeapon;
 
@@ -54,5 +55,10 @@ public class WeaponController : MonoBehaviour
     public void EquipDoubleShot()
     {
         this.EquippedWeapon = this.doubleShot;
+    }
+
+    public void EquipSpreadShot()
+    {
+        this.EquippedWeapon = this.spreadShot;
     }
 }

@@ -31,7 +31,9 @@ public class Player : MonoBehaviour
         this.endGameScreen = endGamegameObject.GetComponent<EndGame>();
         this.endGameScreen.Hide();
 
-        EquipSingleShot();
+        //EquipSingleShot();
+
+        EquipSpreadShot();
 
         this.shield.Deactivate();
     }
@@ -204,6 +206,11 @@ public class Player : MonoBehaviour
     public void EquipDoubleShot()
     {
         this.weaponController.EquipDoubleShot();
+    }
+
+    public void EquipSpreadShot()
+    {
+        this.weaponController.EquipSpreadShot();
     }
 
     public void EquipShield()
